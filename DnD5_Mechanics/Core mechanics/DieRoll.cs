@@ -41,7 +41,7 @@ namespace DnD5_Mechanics
 
         public override string ToString()
         {
-            return $"{diceSet.Name} roll";
+            return diceSet.Name;
         }
 
         //public static int Roll(DiceSet dice)

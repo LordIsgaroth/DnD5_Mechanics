@@ -81,5 +81,10 @@ namespace DnD5_Mechanics
             }
             else throw new ArgumentException("Неверный формат названия набора костей!");
         }
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace DnD5_Mechanics
             {
                 int roll = diceSet.Roll();
                 value += roll;
-                representation += $"{roll} + ";
+                representation += $"{roll} ({diceSet}) + ";
             }
 
             foreach (Modifier modifier in modifiers)
@@ -28,6 +28,8 @@ namespace DnD5_Mechanics
                     representation += $"{modifier} + ";
                 }
             }
+
+            representation = $"{value} = {representation.Remove(representation.Length - 3)}";
 
             return new RollResult(value, representation);
         }

@@ -27,5 +27,10 @@ namespace DnD5_Mechanics
             this.source = source;
             this.value = value;
         }
+
+        public override string ToString()
+        {
+            return $"{value} ({source})";
+        }
     }
 }

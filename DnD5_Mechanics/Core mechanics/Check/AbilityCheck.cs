@@ -18,15 +18,18 @@ namespace DnD5_Mechanics
 
         public bool Success { get => success; }
 
-        public AbilityCheck(Ability ability, Modifier abilityModifier, RollType rollType = RollType.Normal, List<DieRoll> additionalDice = null, List<Modifier> additionalModifiers = null)
+        public AbilityCheck(Ability ability, Modifier abilityModifier, int difficulty, RollType rollType = RollType.Normal, List<DieRoll> additionalDice = null, List<Modifier> additionalModifiers = null)
         {
             name = ability.Name;
             this.abilityModifier = abilityModifier;
+            this.difficulty = difficulty;
 
             valueCalculation = new NormalRoll();
+
+            SetRollsAndModifiers();
         }
 
-        protected override void SetRollsAndModifiers()
+        protected override void SetMainRollsAndModifier()
         {
             rolls.Add(new DieRoll(DiceSet.GetByName("1d20")));
             modifiers.Add(abilityModifier);
