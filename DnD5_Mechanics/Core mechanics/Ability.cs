@@ -46,6 +46,15 @@ namespace DnD5_Mechanics
             return abilities.Find(ability => ability.shortcut == shortcut);
         }
 
+        /// <summary>
+        /// Определяет модификатор характеристики
+        /// </summary>
+        /// <param name="abilityValue">Значение характеристики</param>        
+        public static int GetAbilityModifier(int abilityValue)
+        {
+            return (abilityValue - 10) / 2;
+        }
+
         public override string ToString()
         {
             return name;
