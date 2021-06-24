@@ -11,10 +11,10 @@ namespace DnD5_Mechanics
     /// </summary>
     public class AbilityCheckBuilder : ValueDefinitionBuilder
     {
-        private Ability ability;
-        private Modifier abilityModifier;
-        private int difficulty;        
-        private RollType rollType;
+        protected Ability ability;
+        protected Modifier abilityModifier;
+        protected int difficulty;
+        protected RollType rollType;
 
         public AbilityCheckBuilder(
             Ability ability, 
