@@ -50,8 +50,10 @@
     <Compile Include="Core mechanics\Checks\Builders\AbilityCheckBuilder.cs" />
     <Compile Include="Core mechanics\Checks\Builders\AttackCheckBuilder.cs" />
     <Compile Include="Core mechanics\Checks\Builders\DamageValueDefinition.cs" />
+    <Compile Include="Core mechanics\Checks\Builders\InitiativeCheckBuilder.cs" />
     <Compile Include="Core mechanics\Checks\Builders\ValueDefinitionBuilder.cs" />
     <Compile Include="Core mechanics\Checks\Builders\ValueDefinitionDirector.cs" />
+    <Compile Include="Core mechanics\Checks\InitiativeCheck.cs" />
     <Compile Include="Core mechanics\Checks\RollValueDefinitions.cs" />
     <Compile Include="Core mechanics\DiceSet.cs" />
     <Compile Include="Core mechanics\DieRoll.cs" />

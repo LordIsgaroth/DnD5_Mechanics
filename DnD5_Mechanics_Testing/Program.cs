@@ -51,6 +51,22 @@ namespace DnD5_Mechanics_Testing
             attack.CalculateResult();
 
             Console.WriteLine(attack);
+
+            //Тестирование броска инициативы
+            int dexterity = 16;
+
+            InitiativeCheckBuilder initiativeCheckBuilder = new InitiativeCheckBuilder(
+                new Modifier(Ability.Dexterity.Shortcut, Ability.GetAbilityModifier(dexterity)),
+                RollType.Normal,
+                additionalRolls,
+                additionalModifiers);
+
+            ValueDefinitionDirector.ConstructValueDefinition(initiativeCheckBuilder);
+
+            InitiativeCheck initiative = initiativeCheckBuilder.GetResult() as InitiativeCheck;
+            initiative.CalculateResult();
+
+            Console.WriteLine(initiative);
         }
     }
 }
