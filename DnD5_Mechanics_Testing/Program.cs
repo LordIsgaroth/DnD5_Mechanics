@@ -12,7 +12,7 @@ namespace DnD5_Mechanics_Testing
             Modifier strModifier = new Modifier(Ability.Strenght.Shortcut, 3);
             int difficulty = 15;
 
-            List<DieRoll> additionalRolls = new List<DieRoll> { new DieRoll(DiceSet.GetByName("1d4")) };
+            List<DieRoll> additionalRolls = new List<DieRoll> { new DieRoll(DiceSet.GetByName("1d6")) };
             List<Modifier> additionalModifiers = new List<Modifier> { new Modifier("Luck", 2) };
 
             AbilityCheckBuilder abilityBuilder = new AbilityCheckBuilder(

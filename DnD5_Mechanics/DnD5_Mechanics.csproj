@@ -1,7 +1,61 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DB4CD848-DA3E-42DF-9B5C-5E06EE459ECF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DnD5_Mechanics</RootNamespace>
+    <AssemblyName>DnD5_Mechanics</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Core mechanics\Ability.cs" />
+    <Compile Include="Core mechanics\Calculations\IRollValueCalculation.cs" />
+    <Compile Include="Core mechanics\Calculations\NormalRoll.cs" />
+    <Compile Include="Core mechanics\Calculations\RollResult.cs" />
+    <Compile Include="Core mechanics\Calculations\RollType.cs" />
+    <Compile Include="Core mechanics\Checks\AbilityCheck.cs" />
+    <Compile Include="Core mechanics\Checks\AttackCheck.cs" />
+    <Compile Include="Core mechanics\Checks\Builders\AbilityCheckBuilder.cs" />
+    <Compile Include="Core mechanics\Checks\Builders\AttackCheckBuilder.cs" />
+    <Compile Include="Core mechanics\Checks\Builders\DamageValueDefinition.cs" />
+    <Compile Include="Core mechanics\Checks\Builders\ValueDefinitionBuilder.cs" />
+    <Compile Include="Core mechanics\Checks\Builders\ValueDefinitionDirector.cs" />
+    <Compile Include="Core mechanics\Checks\RollValueDefinitions.cs" />
+    <Compile Include="Core mechanics\DiceSet.cs" />
+    <Compile Include="Core mechanics\DieRoll.cs" />
+    <Compile Include="Core mechanics\Modifier.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
