@@ -14,33 +14,20 @@ namespace DnD5_Mechanics
         protected int difficulty;
         protected bool success;
 
-        protected Modifier abilityModifier;
+        public bool Success => success;
 
-        public bool Success { get => success; }
-
-        public AbilityCheck(Ability ability, Modifier abilityModifier, int difficulty, RollType rollType = RollType.Normal, List<DieRoll> additionalDice = null, List<Modifier> additionalModifiers = null)
+        internal AbilityCheck(int difficulty) 
         {
-            name = ability.Name;
-            this.abilityModifier = abilityModifier;
             this.difficulty = difficulty;
-
-            valueCalculation = new NormalRoll();
-
-            SetRollsAndModifiers();
         }
 
-        protected override void SetMainRollsAndModifier()
+        /// <summary>
+        /// Необходимо определить, успешна ли проверка, сравнив значение со сложностью
+        /// </summary>
+        public override void CalculateResult()
         {
-            rolls.Add(new DieRoll(DiceSet.GetByName("1d20")));
-            modifiers.Add(abilityModifier);
+            base.CalculateResult();
+            if (result.Value >= difficulty) success = true;
         }
-
-        //public AbilityCheck(int difficulty, Modifier abilityModifier, RollType rollType = RollType.Normal, List<DieRoll> additionalDice = null, List<Modifier> additionalModifiers = null)
-        //    : base(new List<DieRoll>() { new D20Roll(rollType) }, new List<Modifier>() { abilityModifier }, additionalDice, additionalModifiers)
-        //{
-
-
-        //    this.difficulty = difficulty;
-        //}
     }
 }

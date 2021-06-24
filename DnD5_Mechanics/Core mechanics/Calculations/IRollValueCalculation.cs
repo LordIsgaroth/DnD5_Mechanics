@@ -11,6 +11,6 @@ namespace DnD5_Mechanics
     /// </summary>
     public interface IRollValueCalculation
     {
-        RollResult Calculate(List<DieRoll> rolls, List<Modifier> modifiers, RollType rollType = RollType.Normal);
+        RollResult Calculate(List<DieRoll> rolls, List<Modifier> modifiers, RollType rollType);
     }
 }

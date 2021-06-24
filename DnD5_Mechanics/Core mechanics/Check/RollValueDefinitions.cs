@@ -14,47 +14,36 @@ namespace DnD5_Mechanics
         protected string name;
         protected List<DieRoll> rolls;
         protected List<Modifier> modifiers;
-        protected RollResult result;        
+        protected RollResult result;
+        protected RollType rollType;
+        protected IRollValueCalculation valueCalculation;        
 
-        protected IRollValueCalculation valueCalculation;
+        internal RollType RollType { set { rollType = value; } }
+        internal string Name { set { name = value; } }
+        internal List<DieRoll> Rolls { get => rolls;  set { rolls = value; } }
+        internal List<Modifier> Modifiers { get => modifiers;  set { modifiers = value; } }
 
-        public RollResult Result { get => result; }
+        public IRollValueCalculation ValueCalculation { set { valueCalculation = value; } }
 
-        public RollValueDefinition()
+        public RollResult Result => result;
+
+        internal RollValueDefinition()
         {
             rolls = new List<DieRoll>();
             modifiers = new List<Modifier>();
         }
 
         /// <summary>
-        /// Устанавливает для экземпляра класса переданные в конструктор броски и модификаторы
-        /// </summary>
-        /// <param name="additionalRolls">Дополнительные броски</param>
-        /// <param name="additionalModifiers">Дополнительные модификаторы</param>
-        protected void SetRollsAndModifiers(List<DieRoll> additionalRolls = null, List<Modifier> additionalModifiers = null)
-        {
-            SetMainRollsAndModifier();
-
-            if (additionalRolls != null) rolls.AddRange(additionalRolls);
-            if (additionalModifiers != null) modifiers.AddRange(additionalModifiers);
-        }
-
-        /// <summary>
-        /// Устанавливает основные броски и модификаторы для проверки
-        /// </summary>
-        protected abstract void SetMainRollsAndModifier();
-
-        /// <summary>
         /// Подсчитывает результат проверки
         /// </summary>
         public virtual void CalculateResult()
         {
-            result = valueCalculation.Calculate(rolls, modifiers);
+            result = valueCalculation.Calculate(rolls, modifiers, rollType);
         }
 
         public override string ToString()
         {
-            return result.Representation;
+            return $"{name}: {result.Representation}";
         }
     }
 }
