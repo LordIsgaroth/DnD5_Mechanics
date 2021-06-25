@@ -12,6 +12,8 @@ namespace DnD5_Mechanics
         private DiceSet diceSet;
         private bool decrease;
 
+        internal DiceSet DiceSet => diceSet;
+
         /// <summary>
         /// Определение данных для броска костей
         /// </summary>

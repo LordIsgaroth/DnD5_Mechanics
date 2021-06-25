@@ -9,15 +9,45 @@ namespace DnD5_Mechanics
     public class NormalRoll : IRollValueCalculation
     {
         public RollResult Calculate(List<DieRoll> rolls, List<Modifier> modifiers, RollType rollType = RollType.Normal)
-        {            
+        {
+            //int value = 0;
+            //string representation = "";
+
+            //foreach (DieRoll diceSet in rolls)
+            //{
+            //    int roll = diceSet.Roll();
+            //    value += roll;
+            //    representation += $"{roll} ({diceSet}) + ";
+            //}
+
+            //foreach (Modifier modifier in modifiers)
+            //{
+            //    if (modifier.Value != 0)
+            //    {
+            //        value += modifier.Value;
+            //        representation += $"{modifier} + ";
+            //    }
+            //}
+
+            //representation = $"{value} = {representation.Remove(representation.Length - 3)}";
+
+            //return new RollResult(value, representation);
+
             int value = 0;
             string representation = "";
 
-            foreach (DieRoll diceSet in rolls)
+            bool first = true;
+
+            foreach (DieRoll dieRoll in rolls)
             {
-                int roll = diceSet.Roll();
+                int roll = dieRoll.Roll();
                 value += roll;
-                representation += $"{roll} ({diceSet}) + ";
+
+                if (!first) representation += " + ";
+
+                representation += $"{roll} ({dieRoll})";
+
+                first = false;
             }
 
             foreach (Modifier modifier in modifiers)
@@ -25,11 +55,12 @@ namespace DnD5_Mechanics
                 if (modifier.Value != 0)
                 {
                     value += modifier.Value;
-                    representation += $"{modifier} + ";
+                    if (modifier.Value > 0) representation += $" + {modifier}";
+                    else representation += $" {modifier.ToString().Replace("-", "- ")}";
                 }
             }
 
-            representation = $"{value} = {representation.Remove(representation.Length - 3)}";
+            representation = $"{value} = {representation}";
 
             return new RollResult(value, representation);
         }

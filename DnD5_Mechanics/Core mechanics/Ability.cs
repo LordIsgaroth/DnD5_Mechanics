@@ -7,10 +7,10 @@ namespace DnD5_Mechanics
     /// </summary>
     public class Ability
     {
-        static List<Ability> abilities;
+        private static List<Ability> abilities;
 
-        string name;
-        string shortcut;
+        private string name;
+        private string shortcut;
 
         public string Name { get => name; }
         public string Shortcut { get => shortcut; }

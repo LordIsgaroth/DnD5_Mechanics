@@ -9,7 +9,7 @@ namespace DnD5_Mechanics_Testing
         static void Main(string[] args)
         {
             //Тестирование проверки характеристики
-            Modifier strModifier = new Modifier(Ability.Strenght.Shortcut, 3);
+            int strenght = 16;
             int difficulty = 15;
 
             List<DieRoll> additionalRolls = new List<DieRoll> { new DieRoll(DiceSet.GetByName("1d6")) };
@@ -17,7 +17,7 @@ namespace DnD5_Mechanics_Testing
 
             AbilityCheckBuilder abilityBuilder = new AbilityCheckBuilder(
                 Ability.Strenght,
-                strModifier,
+                strenght,
                 difficulty,
                 new NormalRoll(),
                 RollType.Normal,
@@ -37,7 +37,7 @@ namespace DnD5_Mechanics_Testing
 
             AttackCheckBuilder attackBuilder = new AttackCheckBuilder(
                 Ability.Strenght,
-                strModifier,
+                strenght,
                 targetArmorClass,
                 masteryBonus,
                 new NormalRoll(),
@@ -53,10 +53,10 @@ namespace DnD5_Mechanics_Testing
             Console.WriteLine(attack);
 
             //Тестирование броска инициативы
-            int dexterity = 16;
+            int dexterity = 8;
 
             InitiativeCheckBuilder initiativeCheckBuilder = new InitiativeCheckBuilder(
-                new Modifier(Ability.Dexterity.Shortcut, Ability.GetAbilityModifier(dexterity)),
+                dexterity,
                 RollType.Normal,
                 additionalRolls,
                 additionalModifiers);
@@ -67,6 +67,26 @@ namespace DnD5_Mechanics_Testing
             initiative.CalculateResult();
 
             Console.WriteLine(initiative);
+
+            //Тестирование броска урона
+            DamageDieRoll damageDice = new DamageDieRoll(DiceSet.GetByName("1d10"), DamageType.Slashing);
+            List<DieRoll> additionalDamageRolls = new List<DieRoll> { new DamageDieRoll(DiceSet.GetByName("1d6"), DamageType.Necrotic) };
+            List<Modifier> additionalDamageModifiers = new List<Modifier> { new DamageModifier("Fiery soul", 2, DamageType.Fire) };
+
+            DamageValueBuilder damageValueBuilder = new DamageValueBuilder(
+                damageDice,
+                Ability.Strenght,
+                6,
+                false,
+                additionalDamageRolls,
+                additionalDamageModifiers);
+
+            ValueDefinitionDirector.ConstructValueDefinition(damageValueBuilder);
+
+            DamageValueDefinition damageValueDefinition = damageValueBuilder.GetResult() as DamageValueDefinition;
+            damageValueDefinition.CalculateResult();
+
+            Console.WriteLine(damageValueDefinition);
         }
     }
 }

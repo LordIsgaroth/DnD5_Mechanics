@@ -12,14 +12,14 @@ namespace DnD5_Mechanics
 
         public AttackCheckBuilder(
             Ability ability,
-            Modifier abilityModifier,
+            int abilityValue,
             int armorClass,
             Modifier masteryBonus,
             IRollValueCalculation valueCalculation,
             RollType rollType = RollType.Normal,
             List<DieRoll> additionalRolls = null, 
             List<Modifier> additionalModifiers = null) 
-            : base(ability, abilityModifier, armorClass, valueCalculation, rollType, additionalRolls, additionalModifiers)
+            : base(ability, abilityValue, armorClass, valueCalculation, rollType, additionalRolls, additionalModifiers)
         {
             this.masteryBonus = masteryBonus;
         }

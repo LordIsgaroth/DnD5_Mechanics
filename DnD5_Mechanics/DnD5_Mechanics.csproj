@@ -41,6 +41,8 @@
   <ItemGroup />
   <ItemGroup>
     <Compile Include="Core mechanics\Ability.cs" />
+    <Compile Include="Core mechanics\Calculations\DamageRoll.cs" />
+    <Compile Include="Core mechanics\Calculations\DamageRollResult.cs" />
     <Compile Include="Core mechanics\Calculations\IRollValueCalculation.cs" />
     <Compile Include="Core mechanics\Calculations\NormalRoll.cs" />
     <Compile Include="Core mechanics\Calculations\RollResult.cs" />
@@ -49,15 +51,19 @@
     <Compile Include="Core mechanics\Checks\AttackCheck.cs" />
     <Compile Include="Core mechanics\Checks\Builders\AbilityCheckBuilder.cs" />
     <Compile Include="Core mechanics\Checks\Builders\AttackCheckBuilder.cs" />
-    <Compile Include="Core mechanics\Checks\Builders\DamageValueDefinition.cs" />
+    <Compile Include="Core mechanics\Checks\Builders\DamageValueBuilder.cs" />
     <Compile Include="Core mechanics\Checks\Builders\InitiativeCheckBuilder.cs" />
     <Compile Include="Core mechanics\Checks\Builders\ValueDefinitionBuilder.cs" />
     <Compile Include="Core mechanics\Checks\Builders\ValueDefinitionDirector.cs" />
+    <Compile Include="Core mechanics\Checks\DamageValueDefinition.cs" />
     <Compile Include="Core mechanics\Checks\InitiativeCheck.cs" />
     <Compile Include="Core mechanics\Checks\RollValueDefinitions.cs" />
-    <Compile Include="Core mechanics\DiceSet.cs" />
-    <Compile Include="Core mechanics\DieRoll.cs" />
-    <Compile Include="Core mechanics\Modifier.cs" />
+    <Compile Include="Core mechanics\DamageType.cs" />
+    <Compile Include="Core mechanics\Dice\DamageDieRoll.cs" />
+    <Compile Include="Core mechanics\Dice\DiceSet.cs" />
+    <Compile Include="Core mechanics\Dice\DieRoll.cs" />
+    <Compile Include="Core mechanics\Modifiers\DamageModifier.cs" />
+    <Compile Include="Core mechanics\Modifiers\Modifier.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

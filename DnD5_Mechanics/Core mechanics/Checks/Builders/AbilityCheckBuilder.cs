@@ -12,13 +12,13 @@ namespace DnD5_Mechanics
     public class AbilityCheckBuilder : ValueDefinitionBuilder
     {
         protected Ability ability;
-        protected Modifier abilityModifier;
+        protected int abilityValue;
         protected int difficulty;
         protected RollType rollType;
 
         public AbilityCheckBuilder(
-            Ability ability, 
-            Modifier abilityModifier, 
+            Ability ability,
+            int abilityValue, 
             int difficulty,
             IRollValueCalculation valueCalculation,
             RollType rollType = RollType.Normal, 
@@ -26,7 +26,7 @@ namespace DnD5_Mechanics
             List<Modifier> additionalModifiers = null)
         {
             this.ability = ability;
-            this.abilityModifier = abilityModifier;
+            this.abilityValue = abilityValue;
             this.difficulty = difficulty;
             this.valueCalculation = valueCalculation;
             this.rollType = rollType;
@@ -51,7 +51,7 @@ namespace DnD5_Mechanics
 
         public override void SetModifiers()
         {
-            valueDefinition.Modifiers.Add(abilityModifier);
+            valueDefinition.Modifiers.Add(new Modifier(ability.Shortcut, Ability.GetAbilityModifier(abilityValue)));
         }
 
         public override void SetRollType()

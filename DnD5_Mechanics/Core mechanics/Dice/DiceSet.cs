@@ -59,6 +59,15 @@ namespace DnD5_Mechanics
         }
 
         /// <summary>
+        /// Удваивает число костей для критического попадания
+        /// </summary>
+        internal void DoubleForCrit()
+        {
+            quantity *= 2;
+            name = quantity + "d" + edges;
+        }
+
+        /// <summary>
         /// Получает набор из двух чисел из строки 
         /// </summary>
         /// <param name="name">Имя вида ndm, где n - количество костей, m - количество граней, напирмер 10d6</param>

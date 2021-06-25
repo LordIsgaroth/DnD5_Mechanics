@@ -4,17 +4,16 @@ namespace DnD5_Mechanics
 {
     public class InitiativeCheckBuilder : ValueDefinitionBuilder
     {
-        protected Ability ability = Ability.Dexterity;
-        protected Modifier dexterityModifier;
-        protected RollType rollType;
+        private int dexterity;
+        private RollType rollType;
 
         public InitiativeCheckBuilder(
-            Modifier dexterityModifier,
+            int dexterity,
             RollType rollType = RollType.Normal,
             List<DieRoll> additionalRolls = null,
             List<Modifier> additionalModifiers = null)
         {
-            this.dexterityModifier = dexterityModifier;
+            this.dexterity = dexterity;
             this.rollType = rollType;
             this.additionalRolls = additionalRolls;
             this.additionalModifiers = additionalModifiers;
@@ -37,7 +36,7 @@ namespace DnD5_Mechanics
 
         public override void SetModifiers()
         {
-            valueDefinition.Modifiers.Add(dexterityModifier);
+            valueDefinition.Modifiers.Add(new Modifier(Ability.Dexterity.Shortcut, Ability.GetAbilityModifier(dexterity)));
         }
 
         public override void SetRollType()
