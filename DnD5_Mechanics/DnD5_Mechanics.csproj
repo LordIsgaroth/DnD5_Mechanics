@@ -46,7 +46,9 @@
     <Compile Include="Core mechanics\Calculations\IRollValueCalculation.cs" />
     <Compile Include="Core mechanics\Calculations\NormalRoll.cs" />
     <Compile Include="Core mechanics\Calculations\RollResult.cs" />
+    <Compile Include="Core mechanics\Calculations\RollResultWithCriticals.cs" />
     <Compile Include="Core mechanics\Calculations\RollType.cs" />
+    <Compile Include="Core mechanics\Calculations\RollWithCriticals.cs" />
     <Compile Include="Core mechanics\Checks\AbilityCheck.cs" />
     <Compile Include="Core mechanics\Checks\AttackCheck.cs" />
     <Compile Include="Core mechanics\Checks\Builders\AbilityCheckBuilder.cs" />

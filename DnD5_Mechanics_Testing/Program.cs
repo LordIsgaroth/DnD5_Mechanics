@@ -19,7 +19,7 @@ namespace DnD5_Mechanics_Testing
                 Ability.Strenght,
                 strenght,
                 difficulty,
-                new NormalRoll(),
+                new RollWithCriticals(),
                 RollType.Normal,
                 additionalRolls,
                 additionalModifiers);
@@ -40,7 +40,7 @@ namespace DnD5_Mechanics_Testing
                 strenght,
                 targetArmorClass,
                 masteryBonus,
-                new NormalRoll(),
+                new RollWithCriticals(),
                 RollType.Normal,
                 additionalRolls,
                 additionalModifiers);
