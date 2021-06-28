@@ -8,13 +8,13 @@ namespace DnD5_Mechanics
     /// </summary>
     public class AttackCheckBuilder : AbilityCheckBuilder
     {
-        private Modifier masteryBonus;
+        private int masteryBonus;
 
         public AttackCheckBuilder(
             Ability ability,
             int abilityValue,
             int armorClass,
-            Modifier masteryBonus,
+            int masteryBonus,
             IRollValueCalculation valueCalculation,
             RollType rollType = RollType.Normal,
             List<DieRoll> additionalRolls = null, 
@@ -37,7 +37,7 @@ namespace DnD5_Mechanics
         public override void SetModifiers()
         {
             base.SetModifiers();
-            valueDefinition.Modifiers.Add(masteryBonus);
+            valueDefinition.Modifiers.Add(new Modifier("Mastery", masteryBonus));
         }
     }
 }

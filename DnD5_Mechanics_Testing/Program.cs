@@ -33,7 +33,8 @@ namespace DnD5_Mechanics_Testing
 
             //Тестирование атаки
             int targetArmorClass = 18;
-            Modifier masteryBonus = new Modifier("Mastery", 3);
+            int masteryBonus = 3;
+            //Modifier masteryBonus = new Modifier("Mastery", 3);
 
             AttackCheckBuilder attackBuilder = new AttackCheckBuilder(
                 Ability.Strenght,
