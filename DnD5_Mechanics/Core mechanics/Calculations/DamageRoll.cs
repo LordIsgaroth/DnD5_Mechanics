@@ -39,8 +39,8 @@ namespace DnD5_Mechanics
             foreach (DieRoll dieRoll in rolls)
             {
                 int roll = dieRoll.Roll();
-                value += roll;
 
+                if (roll == 0) continue;
                 if (!first) representation += " + ";
 
                 representation += $"{roll} ({dieRoll}";
@@ -60,29 +60,51 @@ namespace DnD5_Mechanics
             {
                 if (modifier.Value != 0)
                 {
-                    value += modifier.Value;
-                    if (modifier.Value > 0) representation += $" + {modifier}";
-                    else representation += $" {modifier.ToString().Replace("-", "- ")}";
+                    if (!first && modifier.Value > 0) representation += " + ";
+
+                    if (modifier.Value > 0) representation += $"{modifier}";
+                    else representation += $"{modifier.ToString().Replace("-", " - ")}";
 
                     if (modifier is DamageModifier)
                     {
                         DamageType type = (modifier as DamageModifier).DamageType;
                         AddToDamageByTypes(type, modifier.Value);
                     }
+
+                    first = false;
                 }
             }
 
+            representation = representation.Trim();
+            value = CalculateTotalValue();
+
             string critical = isCriticalHit ? "Critical hit! " : "";
-
             representation = $"{critical}{value} = {representation}";
-
+            
             return new DamageRollResult(value, representation, damageByTypes);
         }
 
         private void AddToDamageByTypes(DamageType type, int value)
         {
-            if (damageByTypes.ContainsKey(type)) damageByTypes[type] += value;
+            if (damageByTypes.ContainsKey(type))
+            {
+                //Урон не может быть меньше 1
+                if (damageByTypes[type] + value < 1) damageByTypes[type] = 1;
+                else damageByTypes[type] += value;
+            } 
             else damageByTypes.Add(type, value);
+        }
+
+        private int CalculateTotalValue()
+        {
+            int totalDamage = 0;
+
+            foreach(KeyValuePair<DamageType, int> damageByType in damageByTypes)
+            {
+                totalDamage += damageByType.Value;
+            }
+
+            return totalDamage;
         }
     }
 }

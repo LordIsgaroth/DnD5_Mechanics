@@ -8,15 +8,25 @@ namespace DnD5_Mechanics
     /// </summary>
     public class DiceSet
     {
-        private static Dictionary<string, DiceSet> diceSets = new Dictionary<string, DiceSet>();
+        private static Dictionary<string, DiceSet> diceSets;
 
-        private string name;
-        private int quantity;
-        private int edges;
+        //Для случая, когда бросок костей должен отсутствовать
+        public static DiceSet None => GetByName("none");
+
+        private string name = "none";
+        private int quantity = 0;
+        private int edges = 0;
 
         public string Name { get => name; }
         public int Quantity { get => quantity; }
         public int Edges { get => edges; }
+        
+
+        static DiceSet()
+        {
+            diceSets = new Dictionary<string, DiceSet>();
+            diceSets.Add("none", new DiceSet());
+        }
 
         /// <summary>
         /// Конструктор на основании количества костей и количества граней
@@ -29,6 +39,8 @@ namespace DnD5_Mechanics
             this.quantity = quantity;
             this.edges = edges;
         }
+
+        private DiceSet() {}
 
         /// <summary>
         /// Проверяет, является ли переданное количество граней корректным относительно правил D&D

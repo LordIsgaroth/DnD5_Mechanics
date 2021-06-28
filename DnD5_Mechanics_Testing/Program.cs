@@ -88,6 +88,33 @@ namespace DnD5_Mechanics_Testing
             damageValueDefinition.CalculateResult();
 
             Console.WriteLine(damageValueDefinition);
+
+            //Тестирование броска урона безоружной атаки
+            DamageDieRoll unarmedDamageDice = null;
+            DamageType damageType = DamageType.Bludgeoning; // Если оружия в руках нет - тип урона рукопашной атаки по умолчанию дробящий
+            additionalDamageRolls = null;
+            additionalDamageModifiers = null;
+            strenght = 6;
+
+            unarmedDamageDice = new DamageDieRoll(DiceSet.GetByName("none"), damageType);
+            additionalDamageModifiers = new List<Modifier>
+            {
+                new DamageModifier("Unarmed strike", 1, damageType)
+            };
+
+            damageValueBuilder = new DamageValueBuilder(
+                unarmedDamageDice,
+                Ability.Strenght,
+                strenght,
+                false,
+                additionalDamageRolls,
+                additionalDamageModifiers);
+
+            ValueDefinitionDirector.ConstructValueDefinition(damageValueBuilder);
+            damageValueDefinition = damageValueBuilder.GetResult() as DamageValueDefinition;
+            damageValueDefinition.CalculateResult();
+
+            Console.WriteLine(damageValueDefinition);
         }
     }
 }

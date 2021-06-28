@@ -36,7 +36,7 @@ namespace DnD5_Mechanics
         }
 
         public override void SetRolls()
-        {
+        {            
             valueDefinition.Rolls.Add(roll);
         }
 
