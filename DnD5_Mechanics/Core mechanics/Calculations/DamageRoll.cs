@@ -28,10 +28,15 @@ namespace DnD5_Mechanics
             //При критическом попадании количество всех костей удваивается
             if (isCriticalHit)
             {
+                List<DieRoll> criticalRolls = new List<DieRoll>();
+
                 foreach (DieRoll dieRoll in rolls)
                 {
-                    dieRoll.DiceSet.DoubleForCrit();
+                    DiceSet criticalDie = DiceSet.GetByName($"{dieRoll.DiceSet.Quantity * 2}d{dieRoll.DiceSet.Edges}");
+                    criticalRolls.Add(new DamageDieRoll(criticalDie, (dieRoll as DamageDieRoll).DamageType));
                 }
+
+                rolls = criticalRolls;
             }
 
             bool first = true;

@@ -85,6 +85,22 @@ namespace DnD5_Mechanics_Testing
             ValueDefinitionDirector.ConstructValueDefinition(damageValueBuilder);
 
             DamageValueDefinition damageValueDefinition = damageValueBuilder.GetResult() as DamageValueDefinition;
+            damageValueDefinition.ValueCalculation = new DamageRoll(true);
+            damageValueDefinition.CalculateResult();
+
+            Console.WriteLine(damageValueDefinition);
+
+            damageValueDefinition.ValueCalculation = new DamageRoll(true);
+            damageValueDefinition.CalculateResult();
+
+            Console.WriteLine(damageValueDefinition);
+
+            damageValueDefinition.ValueCalculation = new DamageRoll(true);
+            damageValueDefinition.CalculateResult();
+
+            Console.WriteLine(damageValueDefinition);
+
+            damageValueDefinition.ValueCalculation = new DamageRoll(true);
             damageValueDefinition.CalculateResult();
 
             Console.WriteLine(damageValueDefinition);
